@@ -1,0 +1,17 @@
+﻿h1 {
+    text-align: center;
+    color: #3b376b;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 48px;
+    font-weight: 300;
+    top: 50%;
+    text-shadow: 2px 1px 5px rgb(0 0 0 / 50%)
+}
+
+.parent {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: auto 400px;
+    grid-gap: 5px;
+    height: 85vh;
+}

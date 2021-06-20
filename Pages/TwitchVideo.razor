@@ -1,0 +1,21 @@
+﻿@implements IAsyncDisposable
+@inject IJSRuntime _jsRuntime
+
+<div id="twitch-embed" @ref="_twitchContainer" style="position:relative; width:100%; height:100%" />
+
+@code {
+    private ElementReference _twitchContainer;
+    private IJSObjectReference _module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/twitch-embeder.js");
+        }
+
+        await _module.InvokeVoidAsync("embedTwitch", "twitch-embed");
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync() => await _module.DisposeAsync();
+}
